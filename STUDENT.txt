@@ -1,0 +1,130 @@
+========================================
+          PROJECT API — USAGE GUIDE
+========================================
+
+Dokumen ini dibuat untuk Front-End Developer agar
+tidak bingung menggunakan API ini saat development
+maupun production.
+
+========================================
+1. BASE URL (WAJIB BACA)
+========================================
+
+Gunakan BASE URL berikut untuk API:
+
+🔵 PRODUCTION (stabil, digunakan di aplikasi):
+https://project-api-snowy.vercel.app
+
+🔵 PREVIEW (muncul otomatis setiap push):
+https://project-api-git-main-moh-fadhailurrahmans-projects.vercel.app
+
+🔵 HISTORICAL DEPLOYMENTS (abaikan):
+https://project-4e8mxdm0m-moh-fadhailurrahmans-projects.vercel.app
+
+Catatan:
+- Jangan gunakan preview URL untuk aplikasi production.
+- Preview URL hanya untuk testing tiap push GitHub.
+
+========================================
+2. STATUS CHECK
+========================================
+
+Untuk mengecek bahwa API berjalan, akses:
+
+GET /
+Respons:
+{
+  "message": "API is running successfully 🚀"
+}
+
+========================================
+3. ENDPOINT LIST
+========================================
+
+Semua endpoint berada di bawah:
+https://project-api-snowy.vercel.app/api/...
+
+----------------------------------------
+🔹 CUSTOMERS
+----------------------------------------
+GET    /api/customers
+POST   /api/customers
+GET    /api/customers/:id
+PUT    /api/customers/:id
+DELETE /api/customers/:id
+
+----------------------------------------
+🔹 ANALYTICS
+----------------------------------------
+GET /api/analytics
+
+----------------------------------------
+🔹 RECOMMENDATION
+----------------------------------------
+GET /api/recommend/:id
+
+Catatan:
+Pastikan endpoint benar, karena router kamu adalah:
+app.use("/api/recommend:id", recommendRouter);
+
+Sehingga route benar → /api/recommend/123
+Bukan → /api/recommend?id=123
+
+========================================
+4. CONTOH PENGGUNAAN (FRONTEND)
+========================================
+
+----------------------------------------
+Mengambil semua customer:
+----------------------------------------
+fetch("https://project-api-snowy.vercel.app/api/customers")
+  .then(r => r.json())
+  .then(data => console.log(data));
+
+----------------------------------------
+Mengambil 1 data customer:
+----------------------------------------
+fetch("https://project-api-snowy.vercel.app/api/customers/12")
+  .then(r => r.json())
+  .then(data => console.log(data));
+
+----------------------------------------
+Analytics:
+----------------------------------------
+fetch("https://project-api-snowy.vercel.app/api/analytics")
+  .then(r => r.json())
+  .then(data => console.log(data));
+
+----------------------------------------
+Recommendation by ID:
+----------------------------------------
+fetch("https://project-api-snowy.vercel.app/api/recommend/99")
+  .then(r => r.json())
+  .then(data => console.log(data));
+
+========================================
+5. NOTES UNTUK FRONTEND
+========================================
+
+1. Gunakan PRODUCTION URL untuk build final.
+2. Jangan menggunakan URL preview untuk user nyata.
+3. Jika API error:
+   - cek console frontend
+   - cek log di Vercel → Deployments → View Logs
+4. Reset cache jika endpoint berubah:
+   - redeploy ulang di Vercel
+5. Hubungi backend jika ingin:
+   - menambah endpoint
+   - merubah struktur JSON
+   - menambah fitur autentikasi
+
+========================================
+6. KONTAK BACKEND
+========================================
+
+Developer: Moh. Fadhailurrahman
+Jika ada error API, silakan kontak langsung.
+
+========================================
+            END OF DOCUMENT
+========================================
